@@ -13,6 +13,7 @@ namespace Trpo8.Controllers
 {
     [Route("api/v1/auth")]
     [ApiController]
+
     public class Auth : ControllerBase
     {
         private readonly List<User> _users;
