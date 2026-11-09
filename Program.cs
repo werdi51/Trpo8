@@ -34,7 +34,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
-builder.Services.AddSingleton<List<User>>();
+//builder.Services.AddSingleton<List<User>>();
 
 builder.Services.AddSingleton<IPasswordHasher<User>,PasswordHasher<User>>();
 
@@ -44,6 +44,30 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Создаём админа admin123 / P@s$w0rd, если его ещё нет в БД
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var hasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>();
+    var admin = db.Users.FirstOrDefault(u => u.Login == "admin123");
+
+    if (admin == null)
+    {
+        db.Users.Add(new User
+        {
+            Login = "admin123",
+            Role = "Admin",
+            PasswordHash = hasher.HashPassword(null!, "P@s$w0rd")
+        });
+        db.SaveChanges();
+    }
+    else if (admin.PasswordHash == "PLACEHOLDER")
+    {
+        admin.PasswordHash = hasher.HashPassword(admin, "P@s$w0rd");
+        db.SaveChanges();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

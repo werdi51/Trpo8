@@ -1,8 +1,15 @@
-﻿namespace Trpo8.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Trpo8.Models;
+
+public partial class User
 {
-    public class User
-    {
-        public string Login { get; set; } = string.Empty;
-        public string PasswordHash { get; set; } = string.Empty;
-    }
+    public int Id { get; set; }
+
+    public string Login { get; set; } = null!;
+
+    public string Role { get; set; } = null!;
+
+    public string PaswordHash { get; set; } = null!;
 }

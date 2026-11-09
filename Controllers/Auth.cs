@@ -16,22 +16,20 @@ namespace Trpo8.Controllers
 
     public class Auth : ControllerBase
     {
-        private readonly List<User> _users;
+        private readonly AppDbContext _db;
 
         private readonly IConfiguration _configuration;
-
-
 
         private readonly IPasswordHasher<User> _hasher;
 
         public Auth
             (
-            List<User> users,
+            AppDbContext users,
             IPasswordHasher<User> haseher,
             IConfiguration configuration
             )
         {
-            _users = users;
+            _db = users;
             _hasher = haseher;
             _configuration = configuration;
         }
@@ -42,16 +40,20 @@ namespace Trpo8.Controllers
         [HttpPost("register")]
         public IActionResult Register(AuthRequest request)
         {
-            if (_users.Any(u => u.Login == request.Login))
+            if (_db.Users.Any(u => u.Login == request.Login))
                 return Conflict("Логин уже существует");
 
             var user = new User
             {
                 Login = request.Login,
+                Role = "User"
             };
-            user.PasswordHash = _hasher.HashPassword(user, request.Password);
 
-            _users.Add(user);
+            user.PaswordHash = _hasher.HashPassword(user, request.Password);
+            //user.PasswordHash = _hasher.HashPassword(user, request.Password);
+
+            _db.Users.Add(user);
+            _db.SaveChanges();
 
             return Ok("Пользователь добавлен");
         }
@@ -59,17 +61,17 @@ namespace Trpo8.Controllers
         [HttpPost("login")]
         public IActionResult Login(AuthRequest request)
         {
-            var user = _users.Find(u => u.Login == request.Login);
+            var user = _db.Find(u => u.Login == request.Login);
 
             if (user == null)
             {
                 return Unauthorized("неверная пара логин пароль");
             }
 
-            var result = _hasher.VerifyHashedPassword(user, user.PasswordHash,request.Password);
+            //var result = _hasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
 
-            if (result == PasswordVerificationResult.Failed)
-                return Unauthorized("неверный логин или пароль");
+            //if (result == PasswordVerificationResult.Failed)
+            //    return Unauthorized("неверный логин или пароль");
 
             var token = GenerateJwtToken(user);
 
