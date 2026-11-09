@@ -215,3 +215,4 @@ C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis
 C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\anton\OneDrive\Desktop\NeSys\4\Trpo8\obj\Debug\net8.0\Trpo8.sourcelink.json

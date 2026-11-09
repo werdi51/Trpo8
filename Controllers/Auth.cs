@@ -49,7 +49,7 @@ namespace Trpo8.Controllers
                 Role = "User"
             };
 
-            user.PaswordHash = _hasher.HashPassword(user, request.Password);
+            user.PasswordHash = _hasher.HashPassword(user, request.Password);
             //user.PasswordHash = _hasher.HashPassword(user, request.Password);
 
             _db.Users.Add(user);
@@ -61,17 +61,17 @@ namespace Trpo8.Controllers
         [HttpPost("login")]
         public IActionResult Login(AuthRequest request)
         {
-            var user = _db.Find(u => u.Login == request.Login);
+            var user = _db.Users.FirstOrDefault(u => u.Login == request.Login);
 
             if (user == null)
             {
                 return Unauthorized("неверная пара логин пароль");
             }
 
-            //var result = _hasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
+            var result = _hasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
 
-            //if (result == PasswordVerificationResult.Failed)
-            //    return Unauthorized("неверный логин или пароль");
+            if (result == PasswordVerificationResult.Failed)
+                return Unauthorized("неверный логин или пароль");
 
             var token = GenerateJwtToken(user);
 
@@ -86,7 +86,7 @@ namespace Trpo8.Controllers
             var claims = new[]
             {
                 new Claim (ClaimTypes.Name, user.Login),
-                new Claim (ClaimTypes.Role, "ADMIN")
+                new Claim (ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8. GetBytes(_configuration["Jwt:Key"]!));

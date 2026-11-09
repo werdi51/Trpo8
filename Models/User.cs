@@ -11,5 +11,5 @@ public partial class User
 
     public string Role { get; set; } = null!;
 
-    public string PaswordHash { get; set; } = null!;
+    public string PasswordHash { get; set; } = null!;
 }
