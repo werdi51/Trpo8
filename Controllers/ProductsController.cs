@@ -11,7 +11,7 @@ namespace Trpo8.Controllers
     public class ProductsController : ControllerBase 
     {
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "Admin")]
 
         public IActionResult Index()
         {

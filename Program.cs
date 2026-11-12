@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<AppDbContext>();
+
 // Add services to the container.
 
 var key = builder.Configuration["Jwt:Key"] ?? throw new Exception("Не задан секретный ключ JWT");
@@ -45,7 +47,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Создаём админа admin123 / P@s$w0rd, если его ещё нет в БД
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();

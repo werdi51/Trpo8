@@ -1,6 +1,64 @@
-@Trpo8_HostAddress = http://localhost:5003
+@host = https://localhost:7171
+@userLogin = admin123
+@userPassword = P@s$w0rd
 
-GET {{Trpo8_HostAddress}}/weatherforecast/
-Accept: application/json
+### 1. Логин — получить JWT-токен
+# @name loginRequest
+POST {{host}}/api/v1/auth/login
+Content-Type: application/json
 
-###
+{
+  "login": "{{userLogin}}",
+  "password": "{{userPassword}}"
+}
+
+### 2. Создать задачу (токен подставляется из ответа логина)
+# @name createTask
+POST {{host}}/api/v1/tasks
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+Content-Type: application/json
+
+{
+  "title": "работа",
+  "description": "тяжелая"
+}
+
+### 3. Мои задачи
+GET {{host}}/api/v1/tasks
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+
+### 4. Все задачи (только роль Admin)
+GET {{host}}/api/v1/tasks/all
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+
+### 5. Задача по id
+GET {{host}}/api/v1/tasks/{{createTask.response.body.$.id}}
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+
+### 6. Изменить задачу и отметить выполненной
+PUT {{host}}/api/v1/tasks/{{createTask.response.body.$.id}}
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+Content-Type: application/json
+
+{
+  "title": "работа",
+  "description": "тяжелая",
+  "isCompleted": true
+}
+
+### 7. Изменить только заголовок — isCompleted не передан и НЕ сбрасывается
+PUT {{host}}/api/v1/tasks/{{createTask.response.body.$.id}}
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+Content-Type: application/json
+
+{
+  "title": "работа (переименована)",
+  "description": "тяжелая"
+}
+
+### 8. Удалить задачу
+DELETE {{host}}/api/v1/tasks/{{createTask.response.body.$.id}}
+Authorization: Bearer {{loginRequest.response.body.$.access_token}}
+
+### 9. Без токена — должно вернуться 401
+GET {{host}}/api/v1/tasks

@@ -79,7 +79,6 @@ C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\staticwebassets.build.jso
 C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\Trpo8.csproj.Up2Date
 C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\Trpo8.dll
 C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\refint\Trpo8.dll
@@ -216,3 +215,12 @@ C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis
 C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\anton\OneDrive\Desktop\NeSys\4\Trpo8\obj\Debug\net8.0\Trpo8.sourcelink.json
+C:\Users\anton\AppData\Local\Temp\trpo8build\appsettings.Development.json
+C:\Users\anton\AppData\Local\Temp\trpo8build\appsettings.json
+C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.staticwebassets.endpoints.json
+C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.exe
+C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.deps.json
+C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.runtimeconfig.json
+C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.dll
+C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.pdb
+C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\Trpo8.postman_collection.json

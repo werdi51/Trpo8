@@ -9,9 +9,9 @@ public partial class Task
 
     public string Title { get; set; } = null!;
 
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; }
 
     public string OwnerLogin { get; set; } = null!;
 
-    public bool IsCompeted { get; set; }
+    public bool IsCompleted { get; set; }
 }

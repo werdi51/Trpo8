@@ -27,16 +27,16 @@ public partial class AppDbContext : DbContext
     {
         modelBuilder.Entity<Task>(entity =>
         {
-            entity.ToTable("Task");
+            entity.HasKey(e => e.Id).HasName("PK__Task__3214EC0715C75201");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.ToTable("Task");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("User");
+            entity.HasKey(e => e.Id).HasName("PK__User__3214EC072223E0E5");
+
+            entity.ToTable("User");
         });
 
         OnModelCreatingPartial(modelBuilder);
