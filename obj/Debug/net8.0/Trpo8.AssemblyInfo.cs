@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Trpo8")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88ad04b1cfd5db2ad4888ee13126532188054ed6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37dfc706c3a22e6b23bbe9c88015a29b313304bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Trpo8")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Trpo8")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

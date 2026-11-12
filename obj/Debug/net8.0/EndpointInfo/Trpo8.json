@@ -243,6 +243,10 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

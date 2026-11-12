@@ -224,3 +224,4 @@ C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.runtimeconfig.json
 C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.dll
 C:\Users\anton\AppData\Local\Temp\trpo8build\Trpo8.pdb
 C:\Users\anton\Desktop\трпо\Trpo8\bin\Debug\net8.0\Trpo8.postman_collection.json
+C:\Users\anton\Desktop\трпо\Trpo8\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
