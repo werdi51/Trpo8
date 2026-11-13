@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anton\\Desktop\\трпо\\Trpo8\\Trpo8.csproj": {}
+    "C:\\Users\\st310-09\\Desktop\\ff\\Trpo8\\Trpo8.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anton\\Desktop\\трпо\\Trpo8\\Trpo8.csproj": {
+    "C:\\Users\\st310-09\\Desktop\\ff\\Trpo8\\Trpo8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anton\\Desktop\\трпо\\Trpo8\\Trpo8.csproj",
+        "projectUniqueName": "C:\\Users\\st310-09\\Desktop\\ff\\Trpo8\\Trpo8.csproj",
         "projectName": "Trpo8",
-        "projectPath": "C:\\Users\\anton\\Desktop\\трпо\\Trpo8\\Trpo8.csproj",
-        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anton\\Desktop\\трпо\\Trpo8\\obj\\",
+        "projectPath": "C:\\Users\\st310-09\\Desktop\\ff\\Trpo8\\Trpo8.csproj",
+        "packagesPath": "C:\\Users\\st310-09\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\st310-09\\Desktop\\ff\\Trpo8\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\st310-09\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,7 +25,7 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -99,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

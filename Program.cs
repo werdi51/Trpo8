@@ -3,6 +3,12 @@ using System.Text;
 using Trpo8.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Concurrent;
+using System.IdentityModel.Tokens.Jwt;
+
+
+
+using Task = Trpo8.Models.Task;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +45,49 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 //builder.Services.AddSingleton<List<User>>();
 
 builder.Services.AddSingleton<IPasswordHasher<User>,PasswordHasher<User>>();
+
+
+//------------------------------------------
+
+builder.Services.AddSingleton<ConcurrentDictionary<string, DateTime>>();
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    {
+
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnTokenValidated = context =>
+        {
+            var jti = context.Principal?.FindFirst(JwtRegisteredClaimNames.Jti)?.Value;
+
+            if (string.IsNullOrEmpty(jti))
+            {
+                context.Fail("В JWT нету jti");
+                return Task.CompletedTask;
+            }
+
+            var revokedTokens = context.HttpContext.RequestServices.GetRequiredService<ConcurrentDictionary<string, DateTime>>();
+
+            //revokedTokens.TryAdd(jti, expiresAt);
+
+            if (revokedTokens.ContainsKey(jti))
+            {
+                context.Fail("JWT отозван");
+            }
+
+            return Task.CompletedTask;
+        }
+    };
+}
+
+
+);
+//------------------------------------------
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
