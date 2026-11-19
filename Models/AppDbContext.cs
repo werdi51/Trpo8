@@ -15,6 +15,10 @@ public partial class AppDbContext : DbContext
     {
     }
 
+    public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+
+    public virtual DbSet<RevokedToken> RevokedTokens { get; set; }
+
     public virtual DbSet<Task> Tasks { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -25,16 +29,37 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasIndex(e => e.TokenHash, "UQ_RefreshTokens_TokenHash").IsUnique();
+
+            entity.Property(e => e.TokenHash)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.User).WithMany(p => p.RefreshTokens)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RefreshTokens_User");
+        });
+
+        modelBuilder.Entity<RevokedToken>(entity =>
+        {
+            entity.HasIndex(e => e.Jti, "UQ_RevokedTokens_Jti").IsUnique();
+
+            entity.Property(e => e.Jti).HasMaxLength(64);
+        });
+
         modelBuilder.Entity<Task>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Task__3214EC0715C75201");
+            entity.HasKey(e => e.Id).HasName("PK__Task__3214EC0791D3CF1D");
 
             entity.ToTable("Task");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC072223E0E5");
+            entity.HasKey(e => e.Id).HasName("PK__User__3214EC07C897BC8A");
 
             entity.ToTable("User");
         });

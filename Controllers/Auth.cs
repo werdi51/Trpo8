@@ -86,8 +86,7 @@ namespace Trpo8.Controllers
             var claims = new[]
             {
                 new Claim (ClaimTypes.Name, user.Login),
-                new Claim (ClaimTypes.Role, user.Role),
-                new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim (ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8. GetBytes(_configuration["Jwt:Key"]!));
