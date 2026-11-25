@@ -17,6 +17,38 @@
   },
   {
     "ContainingType": "Trpo8.Controllers.Auth",
+    "Method": "Logout",
+    "RelativePath": "api/v1/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Trpo8.Controllers.Auth\u002BRefreshRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Trpo8.Controllers.Auth",
+    "Method": "Refresh",
+    "RelativePath": "api/v1/auth/refresh",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Trpo8.Controllers.Auth\u002BRefreshRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Trpo8.Controllers.Auth",
     "Method": "Register",
     "RelativePath": "api/v1/auth/register",
     "HttpMethod": "POST",

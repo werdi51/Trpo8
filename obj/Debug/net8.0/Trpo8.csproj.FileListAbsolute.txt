@@ -396,3 +396,4 @@ C:\Users\anton\Desktop\трпо\9\Trpo8\obj\Debug\net8.0\staticwebassets.build.e
 C:\Users\anton\Desktop\трпо\9\Trpo8\obj\Debug\net8.0\Trpo8.csproj.Up2Date
 C:\Users\anton\Desktop\трпо\9\Trpo8\obj\Debug\net8.0\Trpo8.genruntimeconfig.cache
 C:\Users\anton\Desktop\трпо\9\Trpo8\obj\Debug\net8.0\ref\Trpo8.dll
+C:\Users\anton\Desktop\трпо\9\Trpo8\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

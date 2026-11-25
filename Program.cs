@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using System.Text;
 using Trpo8.Models;
+using Trpo8.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Concurrent;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>();
+
+builder.Services.AddScoped<RefreshTokenService>();
+builder.Services.AddScoped<RevokedTokenService>();
 
 // Add services to the container.
 
@@ -16,10 +22,20 @@ if (Encoding.UTF8.GetByteCount(key)<32)
 {
     throw new Exception("Ключ JWT короткий");
 }
+
+
+
+builder.Services.AddSingleton<ConcurrentDictionary<string, DateTime>>();
+
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
+
+
+
         ValidateIssuer = true,
         ValidIssuer = "ExampleApi",
 
@@ -32,6 +48,35 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)
         ),
         ClockSkew = TimeSpan.Zero
+    };
+
+
+
+    options.Events = new JwtBearerEvents
+    {
+        OnTokenValidated = context =>
+        {
+            var jti = context.Principal?.FindFirst(JwtRegisteredClaimNames.Jti)?.Value;
+
+            if (string.IsNullOrEmpty(jti))
+            {
+                context.Fail("В JWT нет jti");
+                return System.Threading.Tasks.Task.CompletedTask;
+            }
+
+            var revokedTokens = context.HttpContext.RequestServices
+                .GetRequiredService<ConcurrentDictionary<string, DateTime>>();
+
+            var revokedService = context.HttpContext.RequestServices
+                .GetRequiredService<RevokedTokenService>();
+
+            if (revokedTokens.ContainsKey(jti) || revokedService.IsRevoked(jti))
+            {
+                context.Fail("JWT отозван");
+            }
+
+            return System.Threading.Tasks.Task.CompletedTask;
+        }
     };
 });
 
@@ -78,6 +123,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
